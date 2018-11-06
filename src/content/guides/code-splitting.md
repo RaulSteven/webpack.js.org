@@ -130,11 +130,18 @@ __webpack.config.js__
       new HTMLWebpackPlugin({
         title: 'Code Splitting'
 -     })
-+     }),
-+     new webpack.optimize.CommonsChunkPlugin({
-+       name: 'common' // 指定公共 bundle 的名称。
-+     })
     ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    name: "commons",
+                    chunks: "initial",
+                    minChunks: 2
+                }
+            }
+        }
+    },
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist')
